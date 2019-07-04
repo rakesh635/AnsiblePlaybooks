@@ -1,9 +1,9 @@
 ---
-- hosts: ${ENV}
+- hosts: {{ ENV }}
   vars:
-  - warName: ${ARTIFACT}
-  - warLocalPath: ${WARLOCALPATH}/target
-  - warRemotePath: ${WARREMOTEPATH}
+  - warName: {{ ARTIFACT }}
+  - warLocalPath: {{ WARLOCALPATH }}/target
+  - warRemotePath: {{ WARREMOTEPATH }}
 
   tasks:
   - name: Download WAR from build server to remote deployment server
