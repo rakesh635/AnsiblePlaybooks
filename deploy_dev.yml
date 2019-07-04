@@ -1,0 +1,28 @@
+---
+- hosts: {{ ENV }}
+  vars:
+  - warName: {{ ARTIFACT }}
+  - warLocalPath: {{ WARLOCALPATH }}/target
+  - warRemotePath: {{ WARREMOTEPATH }}
+
+  tasks:
+  - name: Download WAR from build server to remote deployment server
+    synchronize: src={{ warLocalPath }}/{{ warName }} dest={{ warRemotePath }}/{{ warName }}
+    become: yes
+    register: war_downloaded
+
+  - name: Set correct permissions
+    file:
+      path: "{{ warRemotePath }}/{{ warName }}"
+      owner: tomcat
+      group: tomcat
+    become: yes
+    when: war_downloaded.changed
+    register: war_deployed
+
+  - name: Restart tomcat
+    service:
+      name: tomcat
+      state: restarted
+    become: yes
+    when: war_deployed.changed
