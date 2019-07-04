@@ -1,5 +1,5 @@
 ---
-- hosts: {{ lookup('env','ENV') }}
+- hosts: ${ENV}
   vars:
   - warName: ${ARTIFACT}
   - warLocalPath: ${WARLOCALPATH}/target
