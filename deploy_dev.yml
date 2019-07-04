@@ -2,7 +2,7 @@
 - hosts: {{ ENV }}
   vars:
   - warName: {{ ARTIFACT }}
-  - warLocalPath: {{ WARLOCALPATH }}/target
+  - warLocalPath: "{{ WARLOCALPATH }}/target"
   - warRemotePath: {{ WARREMOTEPATH }}
 
   tasks:
