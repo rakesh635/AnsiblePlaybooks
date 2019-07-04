@@ -11,7 +11,7 @@
     become: yes
     register: war_downloaded
 
-  - name: Set correct permissions
+  - name: Set correct permissions for artifacts
     file:
       path: "{{ warRemotePath }}/{{ warName }}"
       owner: tomcat
