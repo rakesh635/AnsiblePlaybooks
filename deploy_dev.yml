@@ -1,5 +1,5 @@
 ---
-- hosts: ${ENV }
+- hosts: ${ENV}
   vars:
   - warName: ${ARTIFACT}
   - warLocalPath: ${WARLOCALPATH}/target
