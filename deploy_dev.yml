@@ -2,12 +2,11 @@
 - hosts: "{{ ENV }}"
   vars:
   - warName: "{{ ARTIFACT }}"
-  - warLocalPath: "{{ WARLOCALPATH }}/target"
   - warRemotePath: "{{ WARREMOTEPATH }}"
 
   tasks:
   - name: Download WAR from build server to remote deployment server
-    synchronize: src={{ warLocalPath }}/{{ warName }} dest={{ warRemotePath }}/{{ warName }}
+    synchronize: src={{ warName }} dest={{ warRemotePath }}/{{ warName }}
     become: yes
     register: war_downloaded
 
